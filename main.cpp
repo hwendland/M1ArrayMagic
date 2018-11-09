@@ -1,13 +1,18 @@
 #include <iostream>
+#include <random>
 #include <array>
 
 using namespace std;
+
+static random_device rd;  //Will be used to obtain a seed for the random number engine
+static mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+static uniform_int_distribution<> dis(1, 9);
 
 array<array<int,30>,30> get_static_array(){
     array<array<int,30>,30> statArray;
     for (size_t i=0; i<30; i++) {
         for (size_t j=0; j<30; j++) {
-            statArray[i][j] = rand() % 10;
+            statArray[i][j] = dis(gen);
         }
     }
     return statArray;
