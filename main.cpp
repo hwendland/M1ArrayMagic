@@ -8,7 +8,10 @@ static random_device rd;  //Will be used to obtain a seed for the random number 
 static mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
 static uniform_int_distribution<> dis(1, 9);
 
-// creates a random static array
+/*!
+ * @brief builds an array
+ * @return 30x30 array with random numbers between 0 and 10
+ */
 array<array<int,30>,30> get_static_array(){
     array<array<int,30>,30> statArray;
     for (size_t i=0; i<30; i++) {
@@ -19,7 +22,10 @@ array<array<int,30>,30> get_static_array(){
     return statArray;
 }
 
-// allocate space for dynamic array
+/*!
+ * @brief allocate space for a dynamic array of size 30x30
+ * @return pointer to first memory cell of array
+ */
 int **get_dynamic_array(){
     int **dynArray;
     dynArray = new int*[30];
@@ -29,7 +35,9 @@ int **get_dynamic_array(){
     return dynArray;
 }
 
-// print function for static array
+/*!
+ * @brief prints a static array of size 30x30
+ */
 void print_array(array<array<int,30>,30> s) {
     for (size_t i=0; i<30; i++) {
         for (size_t j=0; j<30; j++) {
@@ -40,7 +48,9 @@ void print_array(array<array<int,30>,30> s) {
     cout << endl;
 };
 
-// print function for dynamic array
+/*!
+ * @brief prints a dynamic array of size 30x30
+ */
 void print_array(int **d) {
     for (size_t i=0; i<30; i++) {
         for (size_t j=0; j<30; j++) {
@@ -51,7 +61,9 @@ void print_array(int **d) {
     cout << endl;
 };
 
-// copy values from static array into dynamic array
+/*!
+ * @brief copies the content of a static array into a dynamic array (both of size 30x30)
+ */
 void copy_to_dynamic(array<array<int,30>,30> s, int **d) {
     cout << "Static array: \n";
     print_array(s);
@@ -64,7 +76,9 @@ void copy_to_dynamic(array<array<int,30>,30> s, int **d) {
     print_array(d);
 }
 
-// Console program
+/*!
+ * @brief Console program
+ */
 void userCtrl() {
     bool isFilledD = false; // dynamic array can only be printed after it has been copied to
     bool isCreatedS = false; // static array can only be printed after it has been created
