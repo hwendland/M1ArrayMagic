@@ -8,6 +8,7 @@ static random_device rd;  //Will be used to obtain a seed for the random number 
 static mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
 static uniform_int_distribution<> dis(1, 9);
 
+// creates a random static array
 array<array<int,30>,30> get_static_array(){
     array<array<int,30>,30> statArray;
     for (size_t i=0; i<30; i++) {
@@ -18,6 +19,7 @@ array<array<int,30>,30> get_static_array(){
     return statArray;
 }
 
+// allocate space for dynamic array
 int **get_dynamic_array(){
     int **dynArray;
     dynArray = new int*[30];
@@ -27,6 +29,7 @@ int **get_dynamic_array(){
     return dynArray;
 }
 
+// print function for static array
 void print_array(array<array<int,30>,30> s) {
     for (size_t i=0; i<30; i++) {
         for (size_t j=0; j<30; j++) {
@@ -37,6 +40,7 @@ void print_array(array<array<int,30>,30> s) {
     cout << endl;
 };
 
+// print function for dynamic array
 void print_array(int **d) {
     for (size_t i=0; i<30; i++) {
         for (size_t j=0; j<30; j++) {
@@ -47,6 +51,7 @@ void print_array(int **d) {
     cout << endl;
 };
 
+// copy values from static array into dynamic array
 void copy_to_dynamic(array<array<int,30>,30> s, int **d) {
     cout << "Static array: \n";
     print_array(s);
@@ -59,11 +64,12 @@ void copy_to_dynamic(array<array<int,30>,30> s, int **d) {
     print_array(d);
 }
 
+// Console program
 void userCtrl() {
-    bool isFilledD = false;
-    bool isCreatedS = false;
+    bool isFilledD = false; // dynamic array can only be printed after it has been copied to
+    bool isCreatedS = false; // static array can only be printed after it has been created
     bool alive = true;
-    array<array<int,30>,30> s = get_static_array();
+    array<array<int,30>,30> s = get_static_array(); // initialize both arrays to silence warnings
     int **d = get_dynamic_array();
     while (alive) {
         string input;
@@ -88,7 +94,7 @@ void userCtrl() {
                     break;
                 }
                 case 4: {
-                    if (isFilledD) print_array(s);
+                    if (isFilledD) print_array(d);
                     else cout << "You either need to create and fill the array first. \n";
                     break;
                 }
