@@ -74,7 +74,7 @@ void userCtrl() {
              << "3: Print static array \n"
              << "4: Print dynamic array \n"
              << "5: Exit \n"
-             << ">>>";
+             << ">>> ";
         cin >> input;
         try {
             int cmd = stoi(input);
